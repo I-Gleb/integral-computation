@@ -50,11 +50,18 @@ executables:
 
 tests:
   integration-test:
-    main:                Spec.hs
+    main:                Test.hs
     source-dirs:         test
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - hedgehog
+    - HUnit
+    - HUnit-approx
+    - tasty
+    - tasty-hedgehog
+    - tasty-hunit
+    - tasty-discover
     - integration

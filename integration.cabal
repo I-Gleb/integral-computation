@@ -23,6 +23,8 @@ source-repository head
   location: https://github.com/I-Gleb/integral-computation
 
 library
+  exposed-modules:
+      Integration
   other-modules:
       Paths_integration
   hs-source-dirs:
@@ -46,13 +48,21 @@ executable exe
 
 test-suite integration-test
   type: exitcode-stdio-1.0
-  main-is: Spec.hs
+  main-is: Test.hs
   other-modules:
+      Test.Integration
       Paths_integration
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      HUnit
+    , HUnit-approx
+    , base >=4.7 && <5
+    , hedgehog
     , integration
+    , tasty
+    , tasty-discover
+    , tasty-hedgehog
+    , tasty-hunit
   default-language: Haskell2010
