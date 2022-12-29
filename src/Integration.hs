@@ -3,7 +3,7 @@ module Integration where
 import GHC.Float (int2Double)
 
 within :: Double -> [Double] -> Either String Double
-within eps (x : y : xs) | abs (x - y) < eps = Right x
+within eps (x : y : xs) | abs (x - y) < eps = Right y
                         | otherwise = within eps (y : xs)
 within _ xs = Left "Couldn't achieve precesision"
 
@@ -17,7 +17,7 @@ nextMidPoint f a b (n, previous) = let dx = (b - a) / int2Double n in
                                                     + (b - a) * average (map (\x -> f (a + int2Double x * dx + dx * 5 / 6)) [0 .. n - 1])) / 3)
 
 evalIntegralMidPoint :: (Double -> Double) -> Double -> Double -> Double -> Either String Double
-evalIntegralMidPoint f a b eps = within eps (map snd (iterate (nextMidPoint f a b) (1, f ((a + b) / 2) * (b - a))))
+evalIntegralMidPoint f a b eps = within eps (map snd (iterate (nextMidPoint f a b) (1, (f ((a + b) / 2)) * (b - a))))
 
 nextTrapezoid :: (Double -> Double) -> Double -> Double -> (Int,  Double) -> (Int,  Double)
 nextTrapezoid f a b (n, previous) = (2 * n, (previous
