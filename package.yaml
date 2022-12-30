@@ -47,6 +47,15 @@ executables:
     dependencies:
     - integration
     - optparse-applicative
+  analize:
+    main:                Main.hs
+    source-dirs:         analize
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - integration
 
 
 tests:
