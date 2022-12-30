@@ -24,7 +24,11 @@ source-repository head
 
 library
   exposed-modules:
+      Combinators
+      Expr
       Integration
+      Lexer
+      Parser
   other-modules:
       Paths_integration
   hs-source-dirs:
@@ -44,6 +48,7 @@ executable exe
   build-depends:
       base >=4.7 && <5
     , integration
+    , optparse-applicative
   default-language: Haskell2010
 
 test-suite integration-test
@@ -51,6 +56,7 @@ test-suite integration-test
   main-is: Test.hs
   other-modules:
       Test.Integration
+      Test.Parser
       Paths_integration
   hs-source-dirs:
       test
